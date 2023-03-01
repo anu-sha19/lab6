@@ -25,8 +25,10 @@ public class BinaryTree<E>{
 	myTree.root=z;
 	myTree.root.right = x;
 	myTree.root.left = c;
-	System.out.println(myTree.root.data);
-	System.out.println(myTree.numLeaves());
+	
+	myTree.inOrder();
+	
+	
   }
 
   public boolean add(E item){
@@ -63,18 +65,46 @@ public class BinaryTree<E>{
   }
 
   public void inOrder(){
-
+	  //find leftmost local root
+	  //print localroot.left
+	  //print localroot
+	  //print localroot.right
+	  if(root == null) {
+		  return;
+	  }
+	  else {
+		  inOrder(root);
+	  }
   }
-
+  
+  public void inOrder(Node<E> node) {
+	  if(node == null) {
+		  return;
+	  }
+	  inOrder(node.left);
+	  System.out.println(node.data);
+	  inOrder(node.right);
+  }
+  
   public void preOrder(){
-
+	  //print root
+	  //print root.left until the left most root
+	  //then step up 
+	  //then print the right subtree, left always first
   }
 
   public void postOrder(){
+	  //find leftmost local root
+	  //print localroot.left
+	  //print localroot.right
+	  //print localroot
 
   }
   public ArrayList<E> bfs(){
-	return new ArrayList<E>();
+	  //Print out tree level by level(top to bottom, left to right)
+	  //print root
+	  //print root.left and root.right
+		return new ArrayList<E>();
   }
 
   //Code by: Thomas Powis
