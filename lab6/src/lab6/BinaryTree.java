@@ -26,14 +26,12 @@ public class BinaryTree<E>{
 	Node<Integer> c = new Node<Integer>(5);
 	myTree.root=z;
 	myTree.root.right = x;
+	
 	myTree.root.left = c;
-	
-	myTree.inOrder();
-	myTree.preOrder();
-	myTree.postOrder();
-	myTree.bfs();
-	System.out.println(myTree.bfsOrder);
-	
+	myTree.root.left.left = c;
+	//System.out.println(myTree.numInternal());
+	//myTree.inOrder();
+	System.out.println(myTree.numInternal());
   }
 
   public boolean add(E item){
@@ -192,17 +190,35 @@ public class BinaryTree<E>{
 	} else
 	  return countLeaves(node.left) + countLeaves(node.right);
 	}
+  
   //Code by: Thomas Powis
   //Order of N: 
   //Is it recursive?: 
+  
+  //THIS IS NOT DONE, STUCK ON 3 internal nodes
   public int numInternal(){
-	return 0;
+	return countInternals(root);
+  }
+  
+  public static int countInternals(Node node) {
+	  if(node == null) {
+			return 0;
+		}
+		if(node.left != null && node.right != null) {
+			return 2;
+		} else if(node.left == null && node.right != null) {
+			return 1;
+		} else if(node.left != null && node.right == null) {
+			return 1;
+		} else
+		  return 1+ countInternals(node.left) + countLeaves(node.right);
   }
   
   //Code by: Thomas Powis
   //Order of N: 
   //Is it recursive?: 
   public void clear(){
+	  root = null;
   }
 
 }
