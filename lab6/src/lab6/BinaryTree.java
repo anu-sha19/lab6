@@ -25,7 +25,9 @@ public class BinaryTree<E>{
 	myTree.root=z;
 	myTree.root.right = x;
 	myTree.root.left = c;
-	
+	myTree.inOrder();
+	myTree.clear();
+	System.out.println("After:");
 	myTree.inOrder();
 	
 	
@@ -131,6 +133,7 @@ public class BinaryTree<E>{
 	} else
 	  return countLeaves(node.left) + countLeaves(node.right);
 	}
+  
   //Code by: Thomas Powis
   //Order of N: 
   //Is it recursive?: 
@@ -142,6 +145,7 @@ public class BinaryTree<E>{
   //Order of N: 
   //Is it recursive?: 
   public void clear(){
+	  root = null;
   }
 
 }
