@@ -23,11 +23,12 @@ public class BinaryTree<E>{
 	BinaryTree myTree = new BinaryTree<Integer>();
 	Node<Integer> z = new Node<Integer>(4);
 	Node<Integer> x = new Node<Integer>(5);
-	Node<Integer> c = new Node<Integer>(5);
+	Node<Integer> c = new Node<Integer>(6);
 	myTree.root=z;
 	myTree.root.right = x;
-	
-	myTree.root.left = c;
+	x.right = c;
+	System.out.println(myTree.getMax());
+	x.right = c;
 	myTree.root.left.left = c;
 	//System.out.println(myTree.numInternal());
 	//myTree.inOrder();
@@ -49,16 +50,23 @@ public class BinaryTree<E>{
   public E getParent(E item){
 	return item;
   }
-
+  //Jimmys Methods
   public ArrayList<E> getAllDescendant (E item){
 	return new ArrayList<E>();
   }
 
   public E getMax() {
-	E item =null;
-	return item;
+	if(root.right==null){
+		return (E)root.data;
+	}
+	return getMax(root);
   }
-
+  private E getMax(Node root){
+	if(root.right==null){
+		return (E)root.data;
+	}
+	return getMax(root.right);
+  }
   public int getHeight(){
 	return 0;
   }
@@ -66,6 +74,7 @@ public class BinaryTree<E>{
   public int getLevel(E item){
 	return 0;
   }
+  //end of Jimmys methods
 
   public void inOrder(){
 	  //find leftmost local root
