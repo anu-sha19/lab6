@@ -17,6 +17,8 @@ public class BinaryTree<E>{
 		
 	}
   }
+	 public ArrayList<E> bfsOrder = new ArrayList<E>();
+
   public static void main(String[]args){
 	BinaryTree myTree = new BinaryTree<Integer>();
 	Node<Integer> z = new Node<Integer>(4);
@@ -24,7 +26,6 @@ public class BinaryTree<E>{
 	Node<Integer> c = new Node<Integer>(5);
 	myTree.root=z;
 	myTree.root.right = x;
-	myTree.root.right.right = x;
 	
 	myTree.root.left = c;
 	myTree.root.left.left = c;
@@ -93,6 +94,22 @@ public class BinaryTree<E>{
 	  //print root.left until the left most root
 	  //then step up 
 	  //then print the right subtree, left always first
+	  if(root == null) {
+		  return;
+	  }
+	  else {
+		  preOrder(root);
+	  }
+  }
+  public void preOrder(Node<E> node) {
+	  if(node == null) {
+		  return;
+	  }
+	  else {
+		  System.out.println(node.data);
+		  inOrder(node.left);
+		  inOrder(node.right);
+	  }
   }
 
   public void postOrder(){
@@ -100,13 +117,53 @@ public class BinaryTree<E>{
 	  //print localroot.left
 	  //print localroot.right
 	  //print localroot
+	  if(root == null) {
+		  return;
+	  }
+	  else {
+		  postOrder(root);
+	  }
 
   }
+  public void postOrder(Node<E> node) {
+	  if(node == null) {
+		  return;
+	  }
+	  else {
+		  postOrder(node.left);
+		  postOrder(node.right);
+		  System.out.println(node.data);
+	  }
+  }
+  
   public ArrayList<E> bfs(){
 	  //Print out tree level by level(top to bottom, left to right)
 	  //print root
 	  //print root.left and root.right
+	  
+
+	  if(root == null) {
+		  return null;
+	  }
+	  else {
+		  bfs(bfsOrder, root);
+	  }
 		return new ArrayList<E>();
+  }
+  
+  public ArrayList<E> bfs(ArrayList<E> bfsOrder, Node<E> node){
+	  if(node == null) {
+		  return null;
+	  }
+	  else {
+		  bfsOrder.add(node.data);
+		  bfsOrder.add((E) node.left.data);
+		  bfsOrder.add((E) node.right.data);
+		  
+			return bfsOrder;
+
+	  }
+	  
   }
 
   //Code by: Thomas Powis
