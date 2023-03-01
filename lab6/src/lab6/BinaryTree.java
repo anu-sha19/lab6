@@ -1,8 +1,7 @@
 package lab6;
-
-import java.io.NotActiveException;
-
+//tree implementation
 public class BinaryTree<E>{
+	int n=0;
 	Node root=null;  
 	static class Node<E>{
 		E data;
@@ -16,7 +15,10 @@ public class BinaryTree<E>{
 	}
   }
   public static void main(String[]args){
-
+	BinaryTree myTree = new BinaryTree<Integer>();
+	Node<Integer> z = new Node<Integer>(4);
+	myTree.root=z;
+	System.out.println(myTree.root.data);
   }
 }
 
