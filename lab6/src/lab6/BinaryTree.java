@@ -25,13 +25,9 @@ public class BinaryTree<E>{
 	Node<Integer> x = new Node<Integer>(5);
 	Node<Integer> c = new Node<Integer>(6);
 	myTree.root=z;
+	myTree.root.left = c;
 	myTree.root.right = x;
-	x.right = c;
-	System.out.println(myTree.getMax());
-	x.right = c;
-	myTree.root.left.left = c;
-	//System.out.println(myTree.numInternal());
-	//myTree.inOrder();
+	myTree.root.right.right=c;
 	System.out.println(myTree.numInternal());
   }
 
@@ -202,34 +198,27 @@ public class BinaryTree<E>{
   
   //Code by: Thomas Powis
   //Order of N: 
-  //Is it recursive?: 
-  
-  //THIS IS NOT DONE, STUCK ON 3 internal nodes
+  //Is it recursive?: yes
   public int numInternal(){
 	return countInternals(root);
   }
   
   public static int countInternals(Node node) {
-	  if(node == null) {
-			return 0;
-		}
-		if(node.left != null && node.right != null) {
-			return 2;
-		} else if(node.left == null && node.right != null) {
-			return 1;
-		} else if(node.left != null && node.right == null) {
-			return 1;
-		} else
-		  return 1+ countInternals(node.left) + countLeaves(node.right);
+	  if (node == null || (node.left == null && node.right == null)) {
+	        return 0;
+	    }
+	  return 1 + countInternals(node.left) + countInternals(node.right);
   }
   
   //Code by: Thomas Powis
   //Order of N: 
-  //Is it recursive?: 
+  //Is it recursive?: No
   public void clear(){
+	  //Set the root to null
 	  root = null;
+	  //Set the node count (n) to 0, making the tree empty
+	  n = 0;
   }
-
 }
 
 
