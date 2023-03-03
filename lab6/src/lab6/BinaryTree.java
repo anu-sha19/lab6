@@ -3,27 +3,27 @@ package lab6;
 import java.util.ArrayList;
 
 //tree implementation
-public class BinaryTree<E>{
+public class BinaryTree<Integer>{
 	int n=0;
 	Node root=null;  
-	static class Node<E>{
-		E data;
+	static class Node<Integer>{
+		Integer data;
 		Node right;
 		Node left;
-		public Node(E val){
+		public Node(Integer val){
 			data=val;
 		}
 	{
 		
 	}
   }
-	 public ArrayList<E> bfsOrder = new ArrayList<E>();
+	 public ArrayList<Integer> bfsOrder = new ArrayList<Integer>();
 
   public static void main(String[]args){
-	BinaryTree myTree = new BinaryTree<Integer>();
-	Node<Integer> z = new Node<Integer>(4);
-	Node<Integer> x = new Node<Integer>(5);
-	Node<Integer> c = new Node<Integer>(6);
+	BinaryTree myTree = new BinaryTree();
+	Node z = new Node(4);
+	Node x = new Node<>(5);
+	Node c = new Node(6);
 	myTree.root=z;
 	myTree.root.left = c;
 	myTree.root.right = x;
@@ -31,35 +31,35 @@ public class BinaryTree<E>{
 	System.out.println(myTree.numInternal());
   }
 
-  public boolean add(E item){
+  public boolean add(Integer item){
 	return true;
   }
 
-  public E remove(E item){
+  public Integer remove(Integer item){
 	return item;
   }
 
-  public boolean find(E item){
+  public boolean find(Integer item){
 	return true;
   }
 
-  public E getParent(E item){
+  public Integer getParent(Integer item){
 	return item;
   }
   //Jimmys Methods
-  public ArrayList<E> getAllDescendant (E item){
-	return new ArrayList<E>();
+  public ArrayList<Integer> getAllDescendant (Integer item){
+	return new ArrayList<Integer>();
   }
 
-  public E getMax() {
+  public Integer getMax() {
 	if(root.right==null){
-		return (E)root.data;
+		return (Integer)root.data;
 	}
 	return getMax(root);
   }
-  private E getMax(Node root){
+  private Integer getMax(Node root){
 	if(root.right==null){
-		return (E)root.data;
+		return (Integer)root.data;
 	}
 	return getMax(root.right);
   }
@@ -67,7 +67,7 @@ public class BinaryTree<E>{
 	return 0;
   }
 
-  public int getLevel(E item){
+  public int getLevel(Integer item){
 	return 0;
   }
   //end of Jimmys methods
@@ -85,7 +85,7 @@ public class BinaryTree<E>{
 	  }
   }
   
-  public void inOrder(Node<E> node) {
+  public void inOrder(Node<Integer> node) {
 	  if(node == null) {
 		  return;
 	  }
@@ -106,7 +106,7 @@ public class BinaryTree<E>{
 		  preOrder(root);
 	  }
   }
-  public void preOrder(Node<E> node) {
+  public void preOrder(Node<Integer> node) {
 	  if(node == null) {
 		  return;
 	  }
@@ -130,7 +130,7 @@ public class BinaryTree<E>{
 	  }
 
   }
-  public void postOrder(Node<E> node) {
+  public void postOrder(Node<Integer> node) {
 	  if(node == null) {
 		  return;
 	  }
@@ -141,7 +141,7 @@ public class BinaryTree<E>{
 	  }
   }
   
-  public ArrayList<E> bfs(){
+  public ArrayList<Integer> bfs(){
 	  //Print out tree level by level(top to bottom, left to right)
 	  //print root
 	  //print root.left and root.right
@@ -153,17 +153,17 @@ public class BinaryTree<E>{
 	  else {
 		  bfs(bfsOrder, root);
 	  }
-		return new ArrayList<E>();
+		return new ArrayList<Integer>();
   }
   
-  public ArrayList<E> bfs(ArrayList<E> bfsOrder, Node<E> node){
+  public ArrayList<Integer> bfs(ArrayList<Integer> bfsOrder, Node<Integer> node){
 	  if(node == null) {
 		  return null;
 	  }
 	  else {
 		  bfsOrder.add(node.data);
-		  bfsOrder.add((E) node.left.data);
-		  bfsOrder.add((E) node.right.data);
+		  bfsOrder.add((Integer) node.left.data);
+		  bfsOrder.add((Integer) node.right.data);
 		  
 			return bfsOrder;
 
@@ -174,7 +174,7 @@ public class BinaryTree<E>{
   //Code by: Thomas Powis
   //Order of N: 
   //Is it recursive?: 
-  public boolean isIdentical(Node<E> anotherTree){
+  public boolean isIdentical(Node<Integer> anotherTree){
 	return true;
   }
   
