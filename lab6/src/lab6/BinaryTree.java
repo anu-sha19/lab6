@@ -180,7 +180,7 @@ public class BinaryTree<E>{
   
   //Code by: Thomas Powis
   //Order of N: 
-  //Is it recursive?: 
+  //Is it recursive?:  Yes
   public int numLeaves(){
 	  return countLeaves(root);
   }
@@ -203,7 +203,8 @@ public class BinaryTree<E>{
 	return countInternals(root);
   }
   
-  public static int countInternals(Node node) {
+  //Helper method for numInternal
+  private static int countInternals(Node node) {
 	  if (node == null || (node.left == null && node.right == null)) {
 	        return 0;
 	    }
@@ -211,7 +212,7 @@ public class BinaryTree<E>{
   }
   
   //Code by: Thomas Powis
-  //Order of N: 
+  //Order of N: O(1) 
   //Is it recursive?: No
   public void clear(){
 	  //Set the root to null
