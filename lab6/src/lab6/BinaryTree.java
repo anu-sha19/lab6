@@ -179,13 +179,14 @@ public class BinaryTree<Integer>{
   }
   
   //Code by: Thomas Powis
-  //Order of N: 
+  //Order of N: O(n) where n is the number of nodes
   //Is it recursive?:  Yes
   public int numLeaves(){
 	  return countLeaves(root);
   }
   
   //Helper method for numLeaves
+  //This method was adapted from COS 285 Data Structures Lecture 10: Tree Traversals - slide #23
   private static int countLeaves(Node node) {
   if(node == null) {
 		return 0;
@@ -197,13 +198,14 @@ public class BinaryTree<Integer>{
 	}
   
   //Code by: Thomas Powis
-  //Order of N: 
+  //Order of N: O(n) where n is the number of nodes
   //Is it recursive?: yes
   public int numInternal(){
 	return countInternals(root);
   }
   
   //Helper method for numInternal
+  //This method was adapted from chatGPT
   private static int countInternals(Node node) {
 	  if (node == null || (node.left == null && node.right == null)) {
 	        return 0;
