@@ -13,22 +13,16 @@ public class BinaryTree<Integer>{
 		public Node(Integer val){
 			data=val;
 		}
-	{
-		
-	}
   }
-	 public ArrayList<Integer> bfsOrder = new ArrayList<Integer>();
+ public ArrayList<Integer> bfsOrder = new ArrayList<Integer>();
 
   public static void main(String[]args){
-	BinaryTree myTree = new BinaryTree();
-	Node z = new Node(4);
-	Node x = new Node<>(5);
-	Node c = new Node(6);
-	myTree.root=z;
-	myTree.root.left = c;
-	myTree.root.right = x;
-	myTree.root.right.right=c;
-	System.out.println(myTree.numInternal());
+	 BinaryTree myTree = new BinaryTree();
+	 BinaryTree myTree2 = new BinaryTree();
+	 myTree.root = new Node(4);
+	 myTree2.root = new Node(4);
+		
+	 System.out.println(myTree.isIdentical(myTree2));
   }
 
   public boolean add(Integer item){
@@ -172,11 +166,30 @@ public class BinaryTree<Integer>{
   }
 
   //Code by: Thomas Powis
-  //Order of N: 
-  //Is it recursive?: 
-  public boolean isIdentical(Node<Integer> anotherTree){
-	return true;
+  //Order of N: O(n) where n is the number of nodes because the worst case scenario has the method visiting each node to make sure the two trees are identical
+  //Is it recursive?: Yes
+  public boolean isIdentical(BinaryTree anotherTree){
+	return areIdenticalTrees(this.root, anotherTree.root);
   }
+  
+  //This code was partially adapted from chatGPT
+  public static boolean areIdenticalTrees(Node root1, Node root2) {  
+	  
+      //Checks if both the trees are empty  
+      if(root1 == null && root2 == null)  
+          return true;  
+
+     
+      //If both trees are not empty, check whether the data of the nodes is equal 
+      if(root1 != null  && root2 != null) {  
+
+    	  //Repeat using recursion
+          return ((root1.data == root2.data) &&  
+                  (areIdenticalTrees(root1.left, root2.left)) &&  
+                  (areIdenticalTrees(root1.right, root2.right)));  
+      }  
+      return false;  
+  } 
   
   //Code by: Thomas Powis
   //Order of N: O(n) where n is the number of nodes
