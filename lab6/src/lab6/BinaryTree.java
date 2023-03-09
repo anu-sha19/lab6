@@ -198,7 +198,7 @@ public boolean find(Integer item) {
       
       // Recursive case: traverse the left subtree if the item is less than the current node's value, 
       // or the right subtree if it is greater
-      int cmp = item.compareTo(node.data);
+      int cmp = item.compareTo(current.data);
       if (cmp < 0) {
           return (Integer) getParent(item, current.left, current);
       } else if (cmp > 0) {
