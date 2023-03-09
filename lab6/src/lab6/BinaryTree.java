@@ -41,7 +41,8 @@ public class BinaryTree<Integer>{
    
   private boolean add(Integer item, Node<Integer> node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
-      if (item.compareTo(node.data) < 0) {
+      int comp = item.compareTo(node.data);
+      if (comp < 0) {
           if (node.left == null) {
               // If the left child is null, create a new node with the input item as its data and set it as the left child of the current node
               node.left = new Node<>(item);
@@ -52,7 +53,7 @@ public class BinaryTree<Integer>{
           }
       } 
       // If the input item is greater than the data in the current node, check if the right child of the current node is null
-      else if (item.compareTo(node.data) > 0) {
+      else if (comp > 0) {
           if (node.right == null) {
               // If the right child is null, create a new node with the input item as its data and set it as the right child of the current node
               node.right = new Node<>(item);
