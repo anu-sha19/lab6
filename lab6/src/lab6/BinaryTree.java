@@ -69,13 +69,15 @@ public class BinaryTree<Integer>{
       }
   }
 
-  public Integer remove(Integer item){
+
+	public Integer remove(Integer item){
 		if (root == null) {
 	        return null; // empty tree
 	    } else {
 	        Node<Integer> parent = null;
 	        return (Integer)remove(item, root, parent);
 	    }
+	
   }
 	//helper method for remove 
 	private Integer remove(Integer item, Node<Integer> node, Node<Integer> parent) {
