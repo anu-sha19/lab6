@@ -75,7 +75,7 @@ public class BinaryTree<Integer>{
 	        return null; // empty tree
 	    } else {
 	        Node<Integer> parent = null;
-	        return remove(item, root, parent);
+	        return (Integer)remove(item, root, parent);
 	    }
 	}
   }
