@@ -25,8 +25,47 @@ public class BinaryTree<Integer>{
 	 System.out.println(myTree.isIdentical(myTree2));
   }
 
-  public boolean add(Integer item){
-	return true;
+  public boolean add(E item) {
+      // If the root is null, create a new node with the input item as its data and set it as the root of the tree
+      if (root == null) {
+          root = new Node<>(item);
+          return true;
+      } else {
+          // If the root is not null, call the addHelper method to recursively add the element to the tree
+          return addHelper(item, root);
+      }
+  }
+
+  
+  //Helper method to recursively add a new element to the binary search tree.
+   
+  private boolean addHelper(E item, Node<E> node) {
+      // If the input item is less than the data in the current node, check if the left child of the current node is null
+      if (item.compareTo(node.data) < 0) {
+          if (node.left == null) {
+              // If the left child is null, create a new node with the input item as its data and set it as the left child of the current node
+              node.left = new Node<>(item);
+              return true;
+          } else {
+              // If the left child is not null, recursively call the addHelper method with the input item and the left child as parameters
+              return addHelper(item, node.left);
+          }
+      } 
+      // If the input item is greater than the data in the current node, check if the right child of the current node is null
+      else if (item.compareTo(node.data) > 0) {
+          if (node.right == null) {
+              // If the right child is null, create a new node with the input item as its data and set it as the right child of the current node
+              node.right = new Node<>(item);
+              return true;
+          } else {
+              // If the right child is not null, recursively call the addHelper method with the input item and the right child as parameters
+              return addHelper(item, node.right);
+          }
+      } 
+      // If the input item is equal to the data in the current node, return false to indicate that the element already exists in the tree
+      else {
+          return false;
+      }
   }
 
   public Integer remove(Integer item){
