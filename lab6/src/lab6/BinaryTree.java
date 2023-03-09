@@ -1,9 +1,10 @@
 package lab6;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 //tree implementation
-public class BinaryTree<Integer>{
+public class BinaryTree<Integer> {
 	int n=0;
 	Node root=null;  
 	static class Node<Integer>{
@@ -21,14 +22,23 @@ public class BinaryTree<Integer>{
 
   public static void main(String[]args){
 	BinaryTree myTree = new BinaryTree();
-	Node z = new Node(4);
-	Node x = new Node<>(5);
-	Node c = new Node(6);
-	myTree.root=z;
-	myTree.root.left = c;
-	myTree.root.right = x;
-	myTree.root.right.right=c;
-	System.out.println(myTree.numInternal());
+	int temp=0;
+	for(int i =0;i<50;i++){
+		if(i%2==0){
+			temp=i/2;
+			if(i%4==0){
+				temp=i/4;
+			}
+		}
+		else{
+			if(i%3==0){
+			 temp=i*3;
+			}
+			else{
+			temp = i*2;
+			}
+		}
+	}
   }
 
   public boolean add(Integer item){
@@ -48,7 +58,25 @@ public class BinaryTree<Integer>{
   }
   //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (Integer item){
-	return new ArrayList<Integer>();
+	return getAllDescendant(item,root,new ArrayList<Integer>(),false);
+  }
+  private ArrayList<Integer> getAllDescendant (Integer item, Node workedOn,ArrayList<Integer> list,boolean enterListAppend){
+	if(workedOn==null){
+		return list;
+	}
+	if(enterListAppend==true){
+
+	}
+	if((int)(workedOn.data)>(int)item){
+		return getAllDescendant(item,workedOn.left,list,enterListAppend);
+	}
+	else if((int)(workedOn.data)<(int)item){
+		return getAllDescendant(item,workedOn.right,list,enterListAppend);
+	}
+	else{
+		enterListAppend=true;
+	}
+	return list;
   }
 
   public Integer getMax() {
@@ -220,6 +248,7 @@ public class BinaryTree<Integer>{
 	  //Set the node count (n) to 0, making the tree empty
 	  n = 0;
   }
+
 }
 
 
