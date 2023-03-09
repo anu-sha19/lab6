@@ -111,7 +111,7 @@ public boolean find(Integer item) {
 
 
   public Integer getParent(Integer item){
-	return item;
+	 return (Integer) getParent(item, root, null);
   }
   //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (Integer item){
