@@ -80,6 +80,68 @@ public class BinaryTree<Integer>{
 	}
   }
 	//helper method for remove 
+	private Integer remove(Integer item, Node<Integer> node, Node<Integer> parent) {
+			int comp = ((String) item).compareTo((String) node.data);
+			if (node == null) {
+				return null; // item not found
+			} 
+			else if (comp < 0) {
+				// search in the left subtree
+				return (Integer) remove(item, node.left, node);
+			} else if (comp> 0) {
+				// search in the right subtree
+				return (Integer) remove(item, node.right, node);
+			} else {
+				// item found, remove the node
+				Integer removedItem = node.data;
+				if (node.left == null && node.right == null) {
+					// case 1: node has no children
+					if (parent == null) {
+						root = null; // node is the root of the tree
+					} else if (parent.left == node) {
+						parent.left = null; // node is the left child of its parent
+					} else {
+						parent.right = null; // node is the right child of its parent
+					}
+				} else if (node.left == null) {
+					// case 2: node has one right child
+					if (parent == null) {
+						root = node.right; // node is the root of the tree
+					} else if (parent.left == node) {
+						parent.left = node.right; // node is the left child of its parent
+					} else {
+						parent.right = node.right; // node is the right child of its parent
+					}
+				} else if (node.right == null) {
+					// case 2: node has one left child
+					if (parent == null) {
+						root = node.left; // node is the root of the tree
+					} else if (parent.left == node) {
+						parent.left = node.left; // node is the left child of its parent
+					} else {
+						parent.right = node.left; // node is the right child of its parent
+					}
+				} else {
+					// case 3: node has two children
+					// find the successor of the node
+					Node<Integer> successor = node.right;
+					Node<Integer> successorParent = node;
+					while (successor.left != null) {
+						successorParent = successor;
+						successor = successor.left;
+					}
+					// replace the node's data with the successor's data
+					node.data = successor.data;
+					// remove the successor node
+					if (successorParent.left == successor) {
+						successorParent.left = successor.right;
+					} else {
+						successorParent.right = successor.right;
+					}
+				}
+				return removedItem;
+			}
+		}
 public boolean find(Integer item) {
 	    // If the tree is empty, the item cannot be found
 	    if (root == null) {
