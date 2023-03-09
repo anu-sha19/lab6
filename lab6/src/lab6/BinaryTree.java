@@ -32,14 +32,14 @@ public class BinaryTree<Integer>{
           return true;
       } else {
           // If the root is not null, call the addHelper method to recursively add the element to the tree
-          return addHelper(item, root);
+          return add(item, root);
       }
   }
 
   
   //Helper method to recursively add a new element to the binary search tree.
    
-  private boolean addHelper(Integer item, Node<Integer> node) {
+  private boolean add(Integer item, Node<Integer> node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
       if (item.compareTo(node.data) < 0) {
           if (node.left == null) {
@@ -48,7 +48,7 @@ public class BinaryTree<Integer>{
               return true;
           } else {
               // If the left child is not null, call the addHelper method with the input item and the left child as parameters
-              return addHelper(item, node.left);
+              return add(item, node.left);
           }
       } 
       // If the input item is greater than the data in the current node, check if the right child of the current node is null
@@ -59,7 +59,7 @@ public class BinaryTree<Integer>{
               return true;
           } else {
               // If the right child is not null, call the addHelper method with the input item and the right child as parameters
-              return addHelper(item, node.right);
+              return add(item, node.right);
           }
       } 
       // If the input item is equal to the data in the current node, return false to indicate that the element already exists in the tree
@@ -71,8 +71,18 @@ public class BinaryTree<Integer>{
   public Integer remove(Integer item){
 	return item;
   }
-
-  private boolean findHelper(Integer item, Node<Integer> node) {
+public boolean find(Integer item) {
+	    // If the tree is empty, the item cannot be found
+	    if (root == null) {
+	        return false;
+	    } 
+	    // Call the recursive helper method to traverse the tree and find the item
+	    else {
+	        return find(item, root);
+	    }
+	}
+	//helper method for find
+  private boolean find(Integer item, Node<Integer> node) {
 	    // Compare the item with the data at the current node
 	    int cmp = item.compareTo(node.data);
 	    // If the item is smaller than the data at the current node, search the left subtree
@@ -81,7 +91,7 @@ public class BinaryTree<Integer>{
 	        if (node.left == null) {
 	            return false;
 	        } else {
-	            return findHelper(item, node.left);
+	            return find(item, node.left);
 	        }
 	    } 
 	    // If the item is larger than the data at the current node, search the right subtree
@@ -90,7 +100,7 @@ public class BinaryTree<Integer>{
 	        if (node.right == null) {
 	            return false;
 	        } else {
-	            return findHelper(item, node.right);
+	            return find(item, node.right);
 	        }
 	    } 
 	    // If the item is equal to the data at the current node, the item is found
