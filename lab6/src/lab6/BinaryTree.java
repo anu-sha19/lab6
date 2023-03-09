@@ -7,10 +7,10 @@ public class BinaryTree<Integer>{
 	int n=0;
 	Node root=null;  
 	static class Node<Integer>{
-		Integer data;
+		int data;
 		Node right;
 		Node left;
-		public Node(Integer val){
+		public Node(int val){
 			data=val;
 		}
   }
@@ -25,7 +25,7 @@ public class BinaryTree<Integer>{
 	 System.out.println(myTree.isIdentical(myTree2));
   }
 
-  public boolean add(Integer item) {
+  public boolean add(int item) {
       // If the root is null, create a new node with the input item as its data and set it as the root of the tree
       if (root == null) {
           root = new Node<>(item);
@@ -39,10 +39,9 @@ public class BinaryTree<Integer>{
   
   //Helper method to recursively add a new element to the binary search tree.
    
-  private boolean add(Integer item, Node<Integer> node) {
+  private boolean add(int item, Node node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
-      int comp =  item.compareTo(node.data);
-      if (comp < 0) {
+      if (item<node.data) {
           if (node.left == null) {
               // If the left child is null, create a new node with the input item as its data and set it as the left child of the current node
               node.left = new Node<>(item);
@@ -53,7 +52,7 @@ public class BinaryTree<Integer>{
           }
       } 
       // If the input item is greater than the data in the current node, check if the right child of the current node is null
-      else if (comp > 0) {
+      else if (item>node.data) {
           if (node.right == null) {
               // If the right child is null, create a new node with the input item as its data and set it as the right child of the current node
               node.right = new Node<>(item);
@@ -70,30 +69,29 @@ public class BinaryTree<Integer>{
   }
 
 
-	public Integer remove(Integer item){
+	public int remove(int item){
 		if (root == null) {
-	        return null; // empty tree
+	        return -1; // empty tree
 	    } else {
-	        Node<Integer> parent = null;
-	        return (Integer)remove(item, root, parent);
+	        Node parent = null;
+	        return remove(item, root, parent);
 	    }
 	
   }
 	//helper method for remove 
-	private Integer remove(Integer item, Node<Integer> node, Node<Integer> parent) {
-			int comp = item.compareTo(node.data);
+	private int remove(int item, Node node, Node parent) {
 			if (node == null) {
-				return null; // item not found
+				return -1; // item not found
 			} 
-			else if (comp < 0) {
+			else if (item<node.data) {
 				// search in the left subtree
-				return (Integer) remove(item, node.left, node);
-			} else if (comp> 0) {
+				return remove(item, node.left, node);
+			} else if (item>node.data) {
 				// search in the right subtree
-				return (Integer) remove(item, node.right, node);
+				return remove(item, node.right, node);
 			} else {
 				// item found, remove the node
-				Integer removedItem = node.data;
+				int removedItem = node.data;
 				if (node.left == null && node.right == null) {
 					// case 1: node has no children
 					if (parent == null) {
@@ -142,7 +140,7 @@ public class BinaryTree<Integer>{
 				return removedItem;
 			}
 		}
-public boolean find(Integer item) {
+public boolean find(int item) {
 	    // If the tree is empty, the item cannot be found
 	    if (root == null) {
 	        return false;
@@ -153,11 +151,11 @@ public boolean find(Integer item) {
 	    }
 	}
 	//helper method for find
-  private boolean find(Integer item, Node<Integer> node) {
+  private boolean find(int item, Node node) {
 	    // Compare the item with the data at the current node
-	    int cmp = item.compareTo(node.data);
+
 	    // If the item is smaller than the data at the current node, search the left subtree
-	    if (cmp < 0) {
+	    if (item<node.data) {
 	        // If the left child is null, the item cannot be found
 	        if (node.left == null) {
 	            return false;
@@ -166,7 +164,7 @@ public boolean find(Integer item) {
 	        }
 	    } 
 	    // If the item is larger than the data at the current node, search the right subtree
-	    else if (cmp > 0) {
+	    else if (item>node.data) {
 	        // If the right child is null, the item cannot be found
 	        if (node.right == null) {
 	            return false;
@@ -181,28 +179,28 @@ public boolean find(Integer item) {
 	}
 
 
-  public Integer getParent(Integer item){
-	 return (Integer) getParent(item, root, null);
+  public int getParent( int item){
+	 return getParent(item, root, null);
   }
 //helper method for getParent()
-	private Integer getParent(Integer item, Node<Integer> current, Node<Integer> parent) {
+	private int getParent(int item, Node current, Node parent) {
       // Base case 1: if the current node is null, the item is not in the tree
       if (current == null) {
-          return null;
+          return -1;
       }
       
       // Base case 2: if the current node is the root and does not have a parent, the item is the root
       if (current == root && parent == null) {
-          return null;
+          return -1;
       }
       
       // Recursive case: traverse the left subtree if the item is less than the current node's value, 
       // or the right subtree if it is greater
-      int cmp = item.compareTo(current.data);
-      if (cmp < 0) {
-          return (Integer) getParent(item, current.left, current);
-      } else if (cmp > 0) {
-          return (Integer) getParent(item, current.right, current);
+      
+      if (item<current.data) {
+          return  getParent(item, current.left, current);
+      } else if (item>current.data) {
+          return  getParent(item, current.right, current);
       } else {
           // Base case 3: if the current node contains the item, return its parent's value
           return parent.data;
@@ -210,19 +208,19 @@ public boolean find(Integer item) {
   }
 
 //Jimmys Methods
-  public ArrayList<Integer> getAllDescendant (Integer item){
+  public ArrayList<Integer> getAllDescendant (int item){
 	return new ArrayList<Integer>();
   }
 
-  public Integer getMax() {
+  public int getMax() {
 	if(root.right==null){
-		return (Integer)root.data;
+		return root.data;
 	}
 	return getMax(root);
   }
-  private Integer getMax(Node root){
+  private int getMax(Node root){
 	if(root.right==null){
-		return (Integer)root.data;
+		return root.data;
 	}
 	return getMax(root.right);
   }
@@ -230,7 +228,7 @@ public boolean find(Integer item) {
 	return 0;
   }
 
-  public int getLevel(Integer item){
+  public int getLevel(int item){
 	return 0;
   }
   //end of Jimmys methods
@@ -248,7 +246,7 @@ public boolean find(Integer item) {
 	  }
   }
   
-  public void inOrder(Node<Integer> node) {
+  public void inOrder(Node node) {
 	  if(node == null) {
 		  return;
 	  }
@@ -293,7 +291,7 @@ public boolean find(Integer item) {
 	  }
 
   }
-  public void postOrder(Node<Integer> node) {
+  public void postOrder(Node node) {
 	  if(node == null) {
 		  return;
 	  }
@@ -319,14 +317,14 @@ public boolean find(Integer item) {
 		return new ArrayList<Integer>();
   }
   
-  public ArrayList<Integer> bfs(ArrayList<Integer> bfsOrder, Node<Integer> node){
+  public ArrayList<Integer> bfs(ArrayList<Integer> bfsOrder, Node node){
 	  if(node == null) {
 		  return null;
 	  }
 	  else {
 		  bfsOrder.add(node.data);
-		  bfsOrder.add((Integer) node.left.data);
-		  bfsOrder.add((Integer) node.right.data);
+		  bfsOrder.add(node.left.data);
+		  bfsOrder.add(node.right.data);
 		  
 			return bfsOrder;
 
