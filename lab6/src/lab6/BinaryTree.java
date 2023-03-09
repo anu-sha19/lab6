@@ -113,7 +113,32 @@ public boolean find(Integer item) {
   public Integer getParent(Integer item){
 	 return (Integer) getParent(item, root, null);
   }
-  //Jimmys Methods
+//helper method for getParent()
+	private Integer getParent(Integer item, Node<Integer> current, Node<Integer> parent) {
+      // Base case 1: if the current node is null, the item is not in the tree
+      if (current == null) {
+          return null;
+      }
+      
+      // Base case 2: if the current node is the root and does not have a parent, the item is the root
+      if (current == root && parent == null) {
+          return null;
+      }
+      
+      // Recursive case: traverse the left subtree if the item is less than the current node's value, 
+      // or the right subtree if it is greater
+      int cmp = item.compareTo(current.data);
+      if (cmp < 0) {
+          return (Integer) getParent(item, current.left, current);
+      } else if (cmp > 0) {
+          return (Integer) getParent(item, current.right, current);
+      } else {
+          // Base case 3: if the current node contains the item, return its parent's value
+          return parent.data;
+      }
+  }
+
+//Jimmys Methods
   public ArrayList<Integer> getAllDescendant (Integer item){
 	return new ArrayList<Integer>();
   }
