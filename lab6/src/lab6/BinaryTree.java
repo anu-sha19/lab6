@@ -15,7 +15,7 @@ public class BinaryTree<Integer>{
 		}
   }
  public ArrayList<Integer> bfsOrder = new ArrayList<Integer>();
-
+ //test
   public static void main(String[]args){
 	 BinaryTree myTree = new BinaryTree();
 	 BinaryTree myTree2 = new BinaryTree();
