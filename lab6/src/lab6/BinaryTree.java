@@ -25,7 +25,7 @@ public class BinaryTree<Integer>{
 	 System.out.println(myTree.isIdentical(myTree2));
   }
 
-  public boolean add(E item) {
+  public boolean add(Integer item) {
       // If the root is null, create a new node with the input item as its data and set it as the root of the tree
       if (root == null) {
           root = new Node<>(item);
@@ -39,7 +39,7 @@ public class BinaryTree<Integer>{
   
   //Helper method to recursively add a new element to the binary search tree.
    
-  private boolean addHelper(E item, Node<E> node) {
+  private boolean addHelper(Integer item, Node<Integer> node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
       if (item.compareTo(node.data) < 0) {
           if (node.left == null) {
