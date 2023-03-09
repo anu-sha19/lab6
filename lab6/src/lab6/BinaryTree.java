@@ -70,8 +70,16 @@ public class BinaryTree<Integer>{
   }
 
   public Integer remove(Integer item){
-	return item;
+	public Integer remove(Integer item){
+		if (root == null) {
+	        return null; // empty tree
+	    } else {
+	        Node<Integer> parent = null;
+	        return remove(item, root, parent);
+	    }
+	}
   }
+	//helper method for remove 
 public boolean find(Integer item) {
 	    // If the tree is empty, the item cannot be found
 	    if (root == null) {
