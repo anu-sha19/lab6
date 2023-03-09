@@ -41,7 +41,7 @@ public class BinaryTree<Integer>{
    
   private boolean add(Integer item, Node<Integer> node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
-      int comp = ((String) item).compareTo((String) node.data);
+      int comp =  item.compareTo(node.data);
       if (comp < 0) {
           if (node.left == null) {
               // If the left child is null, create a new node with the input item as its data and set it as the left child of the current node
@@ -81,7 +81,7 @@ public class BinaryTree<Integer>{
   }
 	//helper method for remove 
 	private Integer remove(Integer item, Node<Integer> node, Node<Integer> parent) {
-			int comp = ((String) item).compareTo((String) node.data);
+			int comp = item.compareTo(node.data);
 			if (node == null) {
 				return null; // item not found
 			} 
@@ -155,7 +155,7 @@ public boolean find(Integer item) {
 	//helper method for find
   private boolean find(Integer item, Node<Integer> node) {
 	    // Compare the item with the data at the current node
-	    int cmp = ((String) item).compareTo((String) node.data);
+	    int cmp = item.compareTo(node.data);
 	    // If the item is smaller than the data at the current node, search the left subtree
 	    if (cmp < 0) {
 	        // If the left child is null, the item cannot be found
@@ -198,7 +198,7 @@ public boolean find(Integer item) {
       
       // Recursive case: traverse the left subtree if the item is less than the current node's value, 
       // or the right subtree if it is greater
-      int cmp = ((String) item).compareTo((String) current.data);
+      int cmp = item.compareTo(node.data);
       if (cmp < 0) {
           return (Integer) getParent(item, current.left, current);
       } else if (cmp > 0) {
