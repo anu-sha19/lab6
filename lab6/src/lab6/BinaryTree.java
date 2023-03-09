@@ -47,7 +47,7 @@ public class BinaryTree<Integer>{
               node.left = new Node<>(item);
               return true;
           } else {
-              // If the left child is not null, recursively call the addHelper method with the input item and the left child as parameters
+              // If the left child is not null, call the addHelper method with the input item and the left child as parameters
               return addHelper(item, node.left);
           }
       } 
@@ -58,7 +58,7 @@ public class BinaryTree<Integer>{
               node.right = new Node<>(item);
               return true;
           } else {
-              // If the right child is not null, recursively call the addHelper method with the input item and the right child as parameters
+              // If the right child is not null, call the addHelper method with the input item and the right child as parameters
               return addHelper(item, node.right);
           }
       } 
@@ -72,9 +72,33 @@ public class BinaryTree<Integer>{
 	return item;
   }
 
-  public boolean find(Integer item){
-	return true;
-  }
+  private boolean findHelper(Integer item, Node<Integer> node) {
+	    // Compare the item with the data at the current node
+	    int cmp = item.compareTo(node.data);
+	    // If the item is smaller than the data at the current node, search the left subtree
+	    if (cmp < 0) {
+	        // If the left child is null, the item cannot be found
+	        if (node.left == null) {
+	            return false;
+	        } else {
+	            return findHelper(item, node.left);
+	        }
+	    } 
+	    // If the item is larger than the data at the current node, search the right subtree
+	    else if (cmp > 0) {
+	        // If the right child is null, the item cannot be found
+	        if (node.right == null) {
+	            return false;
+	        } else {
+	            return findHelper(item, node.right);
+	        }
+	    } 
+	    // If the item is equal to the data at the current node, the item is found
+	    else {
+	        return true;
+	    }
+	}
+
 
   public Integer getParent(Integer item){
 	return item;
