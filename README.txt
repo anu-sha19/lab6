@@ -11,6 +11,15 @@ Order: When the tree is balanced, only subset of the nodes would be visited so t
 4. getParent(E item): E
 Order: In the worst case, we will have to traverse the entire tree so the order will be O(n)where n is the height of the tree, in the best case, when we are looking for the root, the order is O(1)
 
+13. isIdentical(Node<E> anotherTree) 
+Order is O(N) where N is the number of nodes. This is because the worst case scenario will require the method to visit each node to check if the two trees are identical.
+14. numLeaves(): int
+Order is O(N) where N is the number of nodes. This is because the method will need to visit each node to count the number of leaves.
+15. numInternal(): int
+Order is O(N) where N is teh number of nodes. This is because the method will need to visit each node to count the number of internal nodes.
+16. clear(): void
+Order is O(1) this is because this method will need two steps regardless of the size of the tree, those two steps being setting the root to null and setting the number of nodes (n) to zero.
+
 //Additional Methods
 5. getAllDescendant (E item): ArrayList<E>
 6. getMax(): E
