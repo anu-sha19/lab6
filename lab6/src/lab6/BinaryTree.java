@@ -54,7 +54,7 @@ public class BinaryTree{
   }
 
   
-  //Helper method to recursively add a new element to the binary search tree.
+  //Helper method to recursively add a new element to the binary search tree. 
   public static void sout(Object o){
 	System.out.println(o);
   }
