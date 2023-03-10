@@ -29,6 +29,24 @@ public class BinaryTree<Integer>{
 	 sout(myTree.getMax());
 	 sout(myTree.getLevel(99));
 	 //sout(myTree.getAllDescendant(72));
+	  
+	  //Anusha's tests 
+	  // Testing the remove() method
+		    System.out.println("Testing remove() method");
+		    int removed = myTree.remove(4);
+		    System.out.println("Removed " + removed + " from the tree");
+		    System.out.println("Binary tree after removal: " + myTree.bfsOrder);
+		    
+		    // Testing the find() method
+		    System.out.println("Testing find() method");
+		    boolean found = myTree.find(4);
+		    System.out.println("Found 4 in the tree? " + found);
+		    System.out.println("Found 50 in the tree? " + myTree.find(50));
+		    
+		    // Testing the getParent() method
+		    System.out.println("Testing getParent() method");
+		    int parent = myTree.getParent(10);
+		    System.out.println("Parent of 10: " + parent);
 
   }
 
