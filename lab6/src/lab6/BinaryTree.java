@@ -2,13 +2,14 @@ package lab6;
 
 import java.util.ArrayList;
 import java.math.*;
+import java.lang.Integer;
 
 //tree implementation
-public class BinaryTree<Integer>{
+public class BinaryTree{
 	int n=0;
 	Node root=null;  
-	static class Node<Integer>{
-		int data;
+	static class Node{
+		int  data;
 		Node right;
 		Node left;
 		public Node(int val){
@@ -28,14 +29,20 @@ public class BinaryTree<Integer>{
 	 sout(myTree.getHeight());
 	 sout(myTree.getMax());
 	 sout(myTree.getLevel(99));
-	 //sout(myTree.getAllDescendant(72));
+	 sout(myTree.getAllDescendant(72));
+	 sout("Pre Order");
+	 myTree.preOrder();
+	 sout("Post Order");
+	 myTree.postOrder();
+	 sout("In Order");
+	 myTree.inOrder();
 
   }
 
   public boolean add(int item) {
       // If the root is null, create a new node with the input item as its data and set it as the root of the tree
       if (root == null) {
-          root = new Node<>(item);
+          root = new Node(item);
           return true;
       } else {
           // If the root is not null, call the addHelper method to recursively add the element to the tree
@@ -53,7 +60,7 @@ public class BinaryTree<Integer>{
       if (item<node.data) {
           if (node.left == null) {
               // If the left child is null, create a new node with the input item as its data and set it as the left child of the current node
-              node.left = new Node<>(item);
+              node.left = new Node(item);
               return true;
           } else {
               // If the left child is not null, call the addHelper method with the input item and the left child as parameters
@@ -64,7 +71,7 @@ public class BinaryTree<Integer>{
       else if (item>node.data) {
           if (node.right == null) {
               // If the right child is null, create a new node with the input item as its data and set it as the right child of the current node
-              node.right = new Node<>(item);
+              node.right = new Node(item);
               return true;
           } else {
               // If the right child is not null, call the addHelper method with the input item and the right child as parameters
@@ -131,8 +138,8 @@ public class BinaryTree<Integer>{
 				} else {
 					// case 3: node has two children
 					// find the successor of the node
-					Node<Integer> successor = node.right;
-					Node<Integer> successorParent = node;
+					Node successor = node.right;
+					Node successorParent = node;
 					while (successor.left != null) {
 						successorParent = successor;
 						successor = successor.left;
@@ -218,12 +225,11 @@ public boolean find(int item) {
 
 //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (int item){
-	ArrayList<Integer> descendants =new ArrayList<Integer>();
+	ArrayList<Integer> descendants =new ArrayList<>();
     getAllDescendantsHelper(root, item, descendants);
     return descendants;
   }
   private void getAllDescendantsHelper(Node current, int item, ArrayList<Integer> descendants) {
-	/* 
     if (current == null) {
         return;
     }
@@ -242,7 +248,6 @@ public boolean find(int item) {
         getAllDescendantsHelper(current.left, item, descendants);
         getAllDescendantsHelper(current.right, item, descendants);
     }
-	*/
 }
 /*
 * Written by Jimmy Gore
@@ -324,7 +329,7 @@ public boolean find(int item) {
 		  preOrder(root);
 	  }
   }
-  public void preOrder(Node<Integer> node) {
+  public void preOrder(Node node) {
 	  if(node == null) {
 		  return;
 	  }
@@ -379,10 +384,11 @@ public boolean find(int item) {
 		  return null;
 	  }
 	  else {
+		/* 
 		  bfsOrder.add(node.data);
 		  bfsOrder.add(node.left.data);
 		  bfsOrder.add(node.right.data);
-		  
+		  */
 			return bfsOrder;
 
 	  }
