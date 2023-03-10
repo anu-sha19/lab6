@@ -37,23 +37,24 @@ public class BinaryTree{
 	 sout("In Order");
 	 myTree.inOrder();
 	  
-	 sout("Anusha's tests");
-	  // Testing the remove() method
-		    System.out.println("Testing remove() method");
-		    int removed = myTree.remove(4);
-		    System.out.println("Removed " + removed + " from the tree");
-		    System.out.println("Binary tree after removal: " + myTree.bfsOrder);
-		    
-		    // Testing the find() method
-		    System.out.println("Testing find() method");
-		    boolean found = myTree.find(4);
-		    System.out.println("Found 4 in the tree? " + found);
-		    System.out.println("Found 50 in the tree? " + myTree.find(50));
-		    
-		    // Testing the getParent() method
-		    System.out.println("Testing getParent() method");
-		    int parent = myTree.getParent(10);
-		    System.out.println("Parent of 10: " + parent);
+	 sout("\n" +"Anusha's tests");
+		// Testing the remove() method
+		sout("\n" +"Testing remove() method");
+		int removed = myTree.remove(4);
+		sout("Removed " + removed + " from the tree");
+		sout("Printing the tree after removing 4:"+ myTree.bfs());
+
+
+		// Testing the find() method
+		System.out.println("\n" +"Testing find() method");
+		boolean found = myTree.find(4);
+		sout("Found 4 in the tree? " + found);
+		sout("Found 50 in the tree? " + myTree.find(50));
+
+		// Testing the getParent() method
+		sout("\n" +"Testing getParent() method");
+		int parent = myTree.getParent(10);
+		sout("Parent of 10: " + parent);
 
   }
 
