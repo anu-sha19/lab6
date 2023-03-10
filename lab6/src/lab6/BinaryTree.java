@@ -195,25 +195,18 @@ public boolean find(int item) {
 	private int getParent(int item, Node current, Node parent) {
       // Base case 1: if the current node is null, the item is not in the tree
       if (current == null) {
-          return -1;
-      }
-      
-      // Base case 2: if the current node is the root and does not have a parent, the item is the root
-      if (current == root && parent == null) {
-          return -1;
-      }
-      
-      // Recursive case: traverse the left subtree if the item is less than the current node's value, 
-      // or the right subtree if it is greater
-      
-      if (item<current.data) {
-          return  getParent(item, current.left, current);
-      } else if (item>current.data) {
-          return  getParent(item, current.right, current);
-      } else {
-          // Base case 3: if the current node contains the item, return its parent's value
-          return parent.data;
-      }
+	        return -1; // item not found
+	    } else if (current.data == item) {
+	        if (parent == null) {
+	            return -1; // item is root node
+	        } else {
+	            return parent.data;
+	        }
+	    } else if (item < current.data) {
+	        return getParent(item, current.left, current);
+	    } else {
+	        return getParent(item, current.right, current);
+	    }
   }
 
 //Jimmys Methods
