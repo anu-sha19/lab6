@@ -55,7 +55,30 @@ public class BinaryTree{
 		sout("\n" +"Testing getParent() method");
 		int parent = myTree.getParent(10);
 		sout("Parent of 10: " + parent);
-
+		
+	//Testing Tom Powis's Methods
+	sout("\nTom's Method Tests:");
+	sout("\nTesting isIdentical() method");
+	BinaryTree myTree2 = myTree;
+	//Should be true
+	sout(myTree.isIdentical(myTree2));
+	//Should be false
+	BinaryTree myTree3 = new BinaryTree();
+	myTree3.add(5);
+	sout(myTree.isIdentical(myTree3));
+	sout("\nTesting numLeaves");
+	sout(myTree.numLeaves());
+	sout(myTree2.numLeaves());
+	sout(myTree3.numLeaves());
+	sout("\nTesting numInternal");
+	sout(myTree.numInternal());
+	sout(myTree2.numInternal());
+	sout(myTree3.numInternal());
+	sout("\nTesting clear");
+	myTree.clear();
+	sout("Internal nodes after clear: " +myTree.numInternal());
+	sout("Leaves after clear: " + myTree.numLeaves());
+	
   }
   //ANusha's methods 
   public boolean add(int item) {
