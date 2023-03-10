@@ -24,6 +24,12 @@ public class BinaryTree<Integer>{
 		myTree.add(list[i]);
 	 }
 	 //lets put our tests here! use sout() to print
+	 sout("Jimmys tests");
+	 sout(myTree.getHeight());
+	 sout(myTree.getMax());
+	 sout(myTree.getLevel(99));
+	 //sout(myTree.getAllDescendant(72));
+
   }
 
   public boolean add(int item) {
@@ -238,7 +244,9 @@ public boolean find(int item) {
     }
 	*/
 }
-
+/*
+* Written by Jimmy Gore
+ This method just keeps going right*/ 
   public int getMax() {
 	if(root.right==null){
 		return root.data;
@@ -251,6 +259,9 @@ public boolean find(int item) {
 	}
 	return getMax(root.right);
   }
+  /*
+   * 
+   written by jimmy gore*/
   public int getHeight(){
 	return getHeight(root);
   }
