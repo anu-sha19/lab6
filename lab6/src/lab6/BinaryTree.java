@@ -29,13 +29,16 @@ public class BinaryTree{
 	 sout(myTree.getHeight());
 	 sout(myTree.getMax());
 	 sout(myTree.getLevel(99));
-	 sout(myTree.getAllDescendant(72));
+	 sout("getAllDescendant");
+	 sout(myTree.getAllDescendant(25	));
+	 /* 
 	 sout("Pre Order");
 	 myTree.preOrder();
 	 sout("Post Order");
 	 myTree.postOrder();
 	 sout("In Order");
 	 myTree.inOrder();
+	 */
 
   }
 
@@ -219,28 +222,33 @@ public boolean find(int item) {
 //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (int item){
 	ArrayList<Integer> descendants =new ArrayList<>();
-    getAllDescendantsHelper(root, item, descendants);
+    findNodeForgetAllDescendantsHelper(root,item,descendants);
+	descendants.remove(0);
     return descendants;
   }
-  private void getAllDescendantsHelper(Node current, int item, ArrayList<Integer> descendants) {
+  
+  private void findNodeForgetAllDescendantsHelper(Node current, int item,ArrayList<Integer> descendants) {
+	if(current.data<item){
+		findNodeForgetAllDescendantsHelper(current.right,item, descendants);
+	}
+	else if(current.data>item){
+		findNodeForgetAllDescendantsHelper(current.left,item, descendants);
+	}
+	else{
+	 getAllDescendantsHelper(current, descendants);
+	}
+ }
+
+private void getAllDescendantsHelper(Node current,ArrayList<Integer> descendants) {
     if (current == null) {
         return;
-    }
-    if (current.data== item) {
-        // Found the node, add all its descendants to the list
-        if (current.left != null) {
-            descendants.add(current.left.data);
-            getAllDescendantsHelper(current.left, item, descendants);
-        }
-        if (current.right != null) {
-            descendants.add(current.right.data);
-            getAllDescendantsHelper(current.right, item, descendants);
-        }
-    } else {
-        // Recursively search in left and right subtrees
-        getAllDescendantsHelper(current.left, item, descendants);
-        getAllDescendantsHelper(current.right, item, descendants);
-    }
+    } 
+		descendants.add(current.data);
+ 	    getAllDescendantsHelper(current.left,descendants);
+        getAllDescendantsHelper(current.right,descendants);
+
+
+    
 }
 /*
 * Written by Jimmy Gore
