@@ -39,9 +39,25 @@ public class BinaryTree{
 	 sout("In Order");
 	 myTree.inOrder();
 	 */
+	  sout("\n" +"Anusha's tests");
+		// Testing the remove() method
+		sout("\n" +"Testing remove() method");
+		int removed = myTree.remove(4);
+		sout("Removed " + removed + " from the tree");
+		
+		// Testing the find() method
+		System.out.println("\n" +"Testing find() method");
+		boolean found = myTree.find(4);
+		sout("Found 4 in the tree? " + found);
+		sout("Found 50 in the tree? " + myTree.find(50));
+
+		// Testing the getParent() method
+		sout("\n" +"Testing getParent() method");
+		int parent = myTree.getParent(10);
+		sout("Parent of 10: " + parent);
 
   }
-
+  //ANusha's methods 
   public boolean add(int item) {
       // If the root is null, create a new node with the input item as its data and set it as the root of the tree
       if (root == null) {
@@ -86,7 +102,6 @@ public class BinaryTree{
           return false;
       }
   }
-
 
 	public int remove(int item){
 		if (root == null) {
@@ -218,6 +233,7 @@ public boolean find(int item) {
 	        return getParent(item, current.right, current);
 	    }
   }
+//End of Anusha's methods
 
 //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (int item){
@@ -296,6 +312,7 @@ private void getAllDescendantsHelper(Node current,ArrayList<Integer> descendants
   }
   //end of Jimmys methods
 
+//Jonathan's methods 
   public void inOrder(){
 	  //find leftmost local root
 	  //print localroot.left
@@ -395,6 +412,7 @@ private void getAllDescendantsHelper(Node current,ArrayList<Integer> descendants
 	  }
 	  
   }
+//End of Jonathan's methods
 
   //Code by: Thomas Powis
   //Order of N: O(n) where n is the number of nodes because the worst case scenario has the method visiting each node to make sure the two trees are identical
