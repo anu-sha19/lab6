@@ -26,10 +26,13 @@ public class BinaryTree{
 	 }
 	 //lets put our tests here! use sout() to print
 	 sout("Jimmys tests");
+	 sout("Get the trees height");
 	 sout(myTree.getHeight());
+	 sout("Get the trees largest value");
 	 sout(myTree.getMax());
+	 sout("getLevel of 99");
 	 sout(myTree.getLevel(99));
-	 sout("getAllDescendant");
+	 sout("getAllDescendant of 25");
 	 sout(myTree.getAllDescendant(25	));
 	 /* 
 	 sout("Pre Order");
