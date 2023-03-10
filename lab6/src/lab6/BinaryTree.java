@@ -1,6 +1,7 @@
 package lab6;
 
 import java.util.ArrayList;
+import java.math.*;
 
 //tree implementation
 public class BinaryTree<Integer>{
@@ -18,11 +19,11 @@ public class BinaryTree<Integer>{
  //test
   public static void main(String[]args){
 	 BinaryTree myTree = new BinaryTree();
-	 BinaryTree myTree2 = new BinaryTree();
-	 myTree.root = new Node(4);
-	 myTree2.root = new Node(4);
-		
-	 System.out.println(myTree.isIdentical(myTree2));
+	 int[] list ={72, 10, 25, 63, 91, 4, 85, 50, 13, 44, 57, 88, 97, 39, 78, 30, 21, 48, 65, 99, 60, 76, 33, 55, 82};
+	 for(int i=0;i<list.length;i++){
+		myTree.add(list[i]);
+	 }
+	 //lets put our tests here! use sout() to print
   }
 
   public boolean add(int item) {
@@ -38,7 +39,9 @@ public class BinaryTree<Integer>{
 
   
   //Helper method to recursively add a new element to the binary search tree.
-   
+  public static void sout(Object o){
+	System.out.println(o);
+  }
   private boolean add(int item, Node node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
       if (item<node.data) {
@@ -209,8 +212,32 @@ public boolean find(int item) {
 
 //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (int item){
-	return new ArrayList<Integer>();
+	ArrayList<Integer> descendants =new ArrayList<Integer>();
+    getAllDescendantsHelper(root, item, descendants);
+    return descendants;
   }
+  private void getAllDescendantsHelper(Node current, int item, ArrayList<Integer> descendants) {
+	/* 
+    if (current == null) {
+        return;
+    }
+    if (current.data== item) {
+        // Found the node, add all its descendants to the list
+        if (current.left != null) {
+            descendants.add(current.left.data);
+            getAllDescendantsHelper(current.left, item, descendants);
+        }
+        if (current.right != null) {
+            descendants.add(current.right.data);
+            getAllDescendantsHelper(current.right, item, descendants);
+        }
+    } else {
+        // Recursively search in left and right subtrees
+        getAllDescendantsHelper(current.left, item, descendants);
+        getAllDescendantsHelper(current.right, item, descendants);
+    }
+	*/
+}
 
   public int getMax() {
 	if(root.right==null){
@@ -225,11 +252,30 @@ public boolean find(int item) {
 	return getMax(root.right);
   }
   public int getHeight(){
-	return 0;
+	return getHeight(root);
+  }
+  // I used adapted the code from the slides for this one
+  private int getHeight( Node node){
+	if(node==null){
+		return -1;
+	}
+	return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
   }
 
   public int getLevel(int item){
-	return 0;
+	return getLevel(root, item, 1);
+  }
+  private int getLevel(Node root, int item,int level){
+	if(root==null){
+		return -1;
+	}
+	if(root.data<item){
+		return getLevel(root.right, item,++level);
+	}
+	else if(root.data>item){
+		return getLevel(root.left, item,++level);
+	}
+	return level;
   }
   //end of Jimmys methods
 
