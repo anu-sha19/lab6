@@ -1,6 +1,7 @@
 package lab6;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //tree implementation
 public class BinaryTree<Integer>{
@@ -16,23 +17,36 @@ public class BinaryTree<Integer>{
   }
  //test
   public static void main(String[]args){
-	 BinaryTree myTree = new BinaryTree();
-	 BinaryTree myTree2 = new BinaryTree();
+	  
+	  BinaryTree myTree = new BinaryTree();
+		 int[] list ={72, 10, 25, 63, 91, 4, 85, 50, 13, 44, 57, 88, 97, 39, 78, 30, 21, 48, 65, 99, 60, 76, 33, 55, 82};
+		 for(int i=0;i<list.length;i++){
+			myTree.add(list[i]);
+		 }
+		 //lets put our tests here! use sout() to print
+		 sout("Jimmys tests");
+		 //sout(myTree.getHeight());
+		 //sout(myTree.getMax());
+		 //sout(myTree.getLevel(99));
+		 //sout(myTree.getAllDescendant(72));
+
+		 sout("Jonathan's Tests");
+		 System.out.println("PreOrder Testing:");
+		 myTree.preOrder();
+		 System.out.println("PostOrder Testing");
+		 myTree.postOrder();;
+		 System.out.println("inOrder Testing");
+		 myTree.inOrder();
+		 System.out.println("bfs Testing");
+		 sout(myTree.bfs());
+
+
+
 	 
-	 myTree.add(4);
-	 myTree.add(3);
-	 myTree.add(5);
-	 myTree.add(1);
-	 myTree.add(7);
-	 myTree.add(10);
-	 myTree.add(35);
-
-
-
-		
-	 myTree.preOrder();
-	 
-	 System.out.println(myTree.isIdentical(myTree2));
+  }
+  
+  public static void sout(Object o){
+	System.out.println(o);
   }
 
   public boolean add(int item) {
@@ -243,6 +257,10 @@ public boolean find(int item) {
   }
   //end of Jimmys methods
 
+  /*By Jonathan Day
+   * Order is O(N) for Both Method and HelperMethod
+   * Does use recursion
+   */
   public void inOrder(){
 	  //find leftmost local root
 	  //print localroot.left
@@ -256,6 +274,7 @@ public boolean find(int item) {
 	  }
   }
   
+  //HelperMethod to InOrder
   public void inOrder(Node node) {
 	  if(node == null) {
 		  return;
@@ -265,6 +284,10 @@ public boolean find(int item) {
 	  inOrder(node.right);
   }
   
+  /*By Jonathan Day
+   * Order is O(N) for Both Method and HelperMethod
+   * Does use recursion
+   */
   public void preOrder(){
 	    //print root
 	    //print root.left until the left most root
@@ -277,7 +300,8 @@ public boolean find(int item) {
 	        preOrder(root);
 	    }
 	}
-
+  
+  	//Helper method to preOrder
 	public void preOrder(Node<Integer> node) {
 	    if(node == null) {
 	        return;
@@ -288,7 +312,10 @@ public boolean find(int item) {
 	        preOrder(node.right);
 	    }
 	}
-
+	  /*By Jonathan Day
+	   * Order is O(N) for Both Method and HelperMethod
+	   * Does use recursion
+	   */
   public void postOrder(){
 	  //find leftmost local root
 	  //print localroot.left
@@ -300,8 +327,9 @@ public boolean find(int item) {
 	  else {
 		  postOrder(root);
 	  }
-
   }
+  
+  //Helper Method to postOrder
   public void postOrder(Node node) {
 	  if(node == null) {
 		  return;
@@ -313,42 +341,37 @@ public boolean find(int item) {
 	  }
   }
   
-  public ArrayList<Integer> bfs(){
-	  //Print out tree level by level(top to bottom, left to right)
-	  //print root
-	  //print root.left and root.right
-	  
-	  ArrayList<Integer> bfsOrder = new ArrayList<>();
+  /*By Jonathan Day
+   * Order is O(N) for Both Method and HelperMethod
+   * Does use recursion
+   */
 
-	  if(root == null) {
-		  return null;
-	  }
-	  else {
-		  bfs(bfsOrder, root);
-	  }
-		return bfsOrder;
-  }
   
-  public ArrayList<Integer> bfs(ArrayList<Integer> bfsOrder, Node node){
-	  if(node == null) {
-		  return null;
-	  }
-	  else {
-		  bfsOrder.add(node.data);
-		  if(node.left != null) {
-		  bfsOrder.add(node.left.data);
-		  }
-		  if(node.right != null) {
-		  bfsOrder.add(node.right.data);
-		  }
-		  
-
-	  }
-	  
-		return bfsOrder;
-
-	  
-  }
+  //Print out tree level by level(top to bottom, left to right)
+  //print root
+  //print root.left and root.right
+  public ArrayList<Integer> bfs() {
+	    ArrayList<Integer> bfsOrder = new ArrayList<>();
+	    List<Node> levelNodes = new ArrayList<>();
+	    levelNodes.add(root);
+	    bfs(bfsOrder, levelNodes);
+	    return bfsOrder;
+	}
+	private void bfs(ArrayList<Integer> bfsOrder, List<Node> levelNodes) {
+	    if (levelNodes.isEmpty()) {
+	        return;
+	    }
+	    List<Node> nextLevelNodes = new ArrayList<>();
+	    for (Node node : levelNodes) {
+	        if (node != null) {
+	            bfsOrder.add(node.data);
+	            nextLevelNodes.add(node.left);
+	            nextLevelNodes.add(node.right);
+	        }
+	    }
+	    bfs(bfsOrder, nextLevelNodes);
+	}
+	 
 
   //Code by: Thomas Powis
   //Order of N: O(n) where n is the number of nodes because the worst case scenario has the method visiting each node to make sure the two trees are identical
