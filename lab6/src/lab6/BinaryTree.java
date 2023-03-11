@@ -2,57 +2,97 @@ package lab6;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.math.*;
+import java.lang.Integer;
 
 //tree implementation
-public class BinaryTree<Integer>{
+public class BinaryTree{
 	int n=0;
 	Node root=null;  
-	static class Node<Integer>{
-		int data;
+	static class Node{
+		int  data;
 		Node right;
 		Node left;
 		public Node(int val){
 			data=val;
 		}
   }
+ public ArrayList<Integer> bfsOrder = new ArrayList<Integer>();
  //test
   public static void main(String[]args){
-	  
-	  BinaryTree myTree = new BinaryTree();
-		 int[] list ={72, 10, 25, 63, 91, 4, 85, 50, 13, 44, 57, 88, 97, 39, 78, 30, 21, 48, 65, 99, 60, 76, 33, 55, 82};
-		 for(int i=0;i<list.length;i++){
-			myTree.add(list[i]);
-		 }
-		 //lets put our tests here! use sout() to print
-		 sout("Jimmys tests");
-		 //sout(myTree.getHeight());
-		 //sout(myTree.getMax());
-		 //sout(myTree.getLevel(99));
-		 //sout(myTree.getAllDescendant(72));
-
-		 sout("Jonathan's Tests");
-		 System.out.println("PreOrder Testing:");
-		 myTree.preOrder();
-		 System.out.println("PostOrder Testing");
-		 myTree.postOrder();;
-		 System.out.println("inOrder Testing");
-		 myTree.inOrder();
-		 System.out.println("bfs Testing");
-		 sout(myTree.bfs());
-
-
-
+	 BinaryTree myTree = new BinaryTree();
+	 int[] list ={72, 10, 25, 63, 91, 4, 85, 50, 13, 44, 57, 88, 97, 39, 78, 30, 21, 48, 65, 99, 60, 76, 33, 55, 82};
+	 for(int i=0;i<list.length;i++){
+		myTree.add(list[i]);
+	 }
+	 //lets put our tests here! use sout() to print
+	 sout("Jimmys tests");
+	 sout("Get the trees height");
+	 sout(myTree.getHeight());
+	 sout("Get the trees largest value");
+	 sout(myTree.getMax());
+	 sout("getLevel of 99");
+	 sout(myTree.getLevel(99));
+	 sout("getAllDescendant of 25");
+	 sout(myTree.getAllDescendant(25	));
 	 
-  }
-  
-  public static void sout(Object o){
-	System.out.println(o);
-  }
+	 sout("Jonathan's Tests");
+	 
+	 sout("Pre Order");
+	 myTree.preOrder();
+	 sout("Post Order");
+	 myTree.postOrder();
+	 sout("In Order");
+	 myTree.inOrder();
+	 sout("BFS");
+	 sout(myTree.bfs());
+	
+	  sout("\n" +"Anusha's tests");
+		// Testing the remove() method
+		sout("\n" +"Testing remove() method");
+		int removed = myTree.remove(4);
+		sout("Removed " + removed + " from the tree");
+		
+		// Testing the find() method
+		System.out.println("\n" +"Testing find() method");
+		boolean found = myTree.find(4);
+		sout("Found 4 in the tree? " + found);
+		sout("Found 50 in the tree? " + myTree.find(50));
 
+		// Testing the getParent() method
+		sout("\n" +"Testing getParent() method");
+		int parent = myTree.getParent(10);
+		sout("Parent of 10: " + parent);
+		
+	//Testing Tom Powis's Methods
+	sout("\nTom's Method Tests:");
+	sout("\nTesting isIdentical() method");
+	BinaryTree myTree2 = myTree;
+	//Should be true
+	sout(myTree.isIdentical(myTree2));
+	//Should be false
+	BinaryTree myTree3 = new BinaryTree();
+	myTree3.add(5);
+	sout(myTree.isIdentical(myTree3));
+	sout("\nTesting numLeaves");
+	sout(myTree.numLeaves());
+	sout(myTree2.numLeaves());
+	sout(myTree3.numLeaves());
+	sout("\nTesting numInternal");
+	sout(myTree.numInternal());
+	sout(myTree2.numInternal());
+	sout(myTree3.numInternal());
+	sout("\nTesting clear");
+	myTree.clear();
+	sout("Internal nodes after clear: " +myTree.numInternal());
+	sout("Leaves after clear: " + myTree.numLeaves());
+	
+  }
+  //ANusha's methods 
   public boolean add(int item) {
       // If the root is null, create a new node with the input item as its data and set it as the root of the tree
       if (root == null) {
-          root = new Node<>(item);
+          root = new Node(item);
           return true;
       } else {
           // If the root is not null, call the addHelper method to recursively add the element to the tree
@@ -61,14 +101,16 @@ public class BinaryTree<Integer>{
   }
 
   
-  //Helper method to recursively add a new element to the binary search tree.
-   
+  //Helper method to recursively add a new element to the binary search tree. 
+  public static void sout(Object o){
+	System.out.println(o);
+  }
   private boolean add(int item, Node node) {
       // If the input item is less than the data in the current node, check if the left child of the current node is null
       if (item<node.data) {
           if (node.left == null) {
               // If the left child is null, create a new node with the input item as its data and set it as the left child of the current node
-              node.left = new Node<>(item);
+              node.left = new Node(item);
               return true;
           } else {
               // If the left child is not null, call the addHelper method with the input item and the left child as parameters
@@ -79,7 +121,7 @@ public class BinaryTree<Integer>{
       else if (item>node.data) {
           if (node.right == null) {
               // If the right child is null, create a new node with the input item as its data and set it as the right child of the current node
-              node.right = new Node<>(item);
+              node.right = new Node(item);
               return true;
           } else {
               // If the right child is not null, call the addHelper method with the input item and the right child as parameters
@@ -91,7 +133,6 @@ public class BinaryTree<Integer>{
           return false;
       }
   }
-
 
 	public int remove(int item){
 		if (root == null) {
@@ -146,8 +187,8 @@ public class BinaryTree<Integer>{
 				} else {
 					// case 3: node has two children
 					// find the successor of the node
-					Node<Integer> successor = node.right;
-					Node<Integer> successorParent = node;
+					Node successor = node.right;
+					Node successorParent = node;
 					while (successor.left != null) {
 						successorParent = successor;
 						successor = successor.left;
@@ -210,32 +251,55 @@ public boolean find(int item) {
 	private int getParent(int item, Node current, Node parent) {
       // Base case 1: if the current node is null, the item is not in the tree
       if (current == null) {
-          return -1;
-      }
-      
-      // Base case 2: if the current node is the root and does not have a parent, the item is the root
-      if (current == root && parent == null) {
-          return -1;
-      }
-      
-      // Recursive case: traverse the left subtree if the item is less than the current node's value, 
-      // or the right subtree if it is greater
-      
-      if (item<current.data) {
-          return  getParent(item, current.left, current);
-      } else if (item>current.data) {
-          return  getParent(item, current.right, current);
-      } else {
-          // Base case 3: if the current node contains the item, return its parent's value
-          return parent.data;
-      }
+	        return -1; // item not found
+	    } else if (current.data == item) {
+	        if (parent == null) {
+	            return -1; // item is root node
+	        } else {
+	            return parent.data;
+	        }
+	    } else if (item < current.data) {
+	        return getParent(item, current.left, current);
+	    } else {
+	        return getParent(item, current.right, current);
+	    }
   }
+//End of Anusha's methods
 
 //Jimmys Methods
   public ArrayList<Integer> getAllDescendant (int item){
-	return new ArrayList<Integer>();
+	ArrayList<Integer> descendants =new ArrayList<>();
+    findNodeForgetAllDescendantsHelper(root,item,descendants);
+	descendants.remove(0);
+    return descendants;
   }
+  
+  private void findNodeForgetAllDescendantsHelper(Node current, int item,ArrayList<Integer> descendants) {
+	if(current.data<item){
+		findNodeForgetAllDescendantsHelper(current.right,item, descendants);
+	}
+	else if(current.data>item){
+		findNodeForgetAllDescendantsHelper(current.left,item, descendants);
+	}
+	else{
+	 getAllDescendantsHelper(current, descendants);
+	}
+ }
 
+private void getAllDescendantsHelper(Node current,ArrayList<Integer> descendants) {
+    if (current == null) {
+        return;
+    } 
+		descendants.add(current.data);
+ 	    getAllDescendantsHelper(current.left,descendants);
+        getAllDescendantsHelper(current.right,descendants);
+
+
+    
+}
+/*
+* Written by Jimmy Gore
+ This method just keeps going right*/ 
   public int getMax() {
 	if(root.right==null){
 		return root.data;
@@ -248,19 +312,38 @@ public boolean find(int item) {
 	}
 	return getMax(root.right);
   }
+  /*
+   * 
+   written by jimmy gore*/
   public int getHeight(){
-	return 0;
+	return getHeight(root);
+  }
+  // I used adapted the code from the slides for this one
+  private int getHeight( Node node){
+	if(node==null){
+		return -1;
+	}
+	return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
   }
 
   public int getLevel(int item){
-	return 0;
+	return getLevel(root, item, 1);
+  }
+  private int getLevel(Node root, int item,int level){
+	if(root==null){
+		return -1;
+	}
+	if(root.data<item){
+		return getLevel(root.right, item,++level);
+	}
+	else if(root.data>item){
+		return getLevel(root.left, item,++level);
+	}
+	return level;
   }
   //end of Jimmys methods
 
-  /*By Jonathan Day
-   * Order is O(N) for Both Method and HelperMethod
-   * Does use recursion
-   */
+//Jonathan's methods 
   public void inOrder(){
 	  //find leftmost local root
 	  //print localroot.left
@@ -274,7 +357,6 @@ public boolean find(int item) {
 	  }
   }
   
-  //HelperMethod to InOrder
   public void inOrder(Node node) {
 	  if(node == null) {
 		  return;
@@ -284,38 +366,29 @@ public boolean find(int item) {
 	  inOrder(node.right);
   }
   
-  /*By Jonathan Day
-   * Order is O(N) for Both Method and HelperMethod
-   * Does use recursion
-   */
   public void preOrder(){
-	    //print root
-	    //print root.left until the left most root
-	    //then step up 
-	    //then print the right subtree, left always first
-	    if(root == null) {
-	        return;
-	    }
-	    else {
-	        preOrder(root);
-	    }
-	}
-  
-  	//Helper method to preOrder
-	public void preOrder(Node<Integer> node) {
-	    if(node == null) {
-	        return;
-	    }
-	    else {
-	        System.out.println(node.data);
-	        preOrder(node.left);
-	        preOrder(node.right);
-	    }
-	}
-	  /*By Jonathan Day
-	   * Order is O(N) for Both Method and HelperMethod
-	   * Does use recursion
-	   */
+	  //print root
+	  //print root.left until the left most root
+	  //then step up 
+	  //then print the right subtree, left always first
+	  if(root == null) {
+		  return;
+	  }
+	  else {
+		  preOrder(root);
+	  }
+  }
+  public void preOrder(Node node) {
+	  if(node == null) {
+		  return;
+	  }
+	  else {
+		  System.out.println(node.data);
+		  inOrder(node.left);
+		  inOrder(node.right);
+	  }
+  }
+
   public void postOrder(){
 	  //find leftmost local root
 	  //print localroot.left
@@ -327,9 +400,8 @@ public boolean find(int item) {
 	  else {
 		  postOrder(root);
 	  }
+
   }
-  
-  //Helper Method to postOrder
   public void postOrder(Node node) {
 	  if(node == null) {
 		  return;
@@ -341,15 +413,6 @@ public boolean find(int item) {
 	  }
   }
   
-  /*By Jonathan Day
-   * Order is O(N) for Both Method and HelperMethod
-   * Does use recursion
-   */
-
-  
-  //Print out tree level by level(top to bottom, left to right)
-  //print root
-  //print root.left and root.right
   public ArrayList<Integer> bfs() {
 	    ArrayList<Integer> bfsOrder = new ArrayList<>();
 	    List<Node> levelNodes = new ArrayList<>();
@@ -371,7 +434,7 @@ public boolean find(int item) {
 	    }
 	    bfs(bfsOrder, nextLevelNodes);
 	}
-	 
+//End of Jonathan's methods
 
   //Code by: Thomas Powis
   //Order of N: O(n) where n is the number of nodes because the worst case scenario has the method visiting each node to make sure the two trees are identical
