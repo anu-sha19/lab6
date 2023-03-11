@@ -22,9 +22,13 @@ This is O(N) as it must traverse down every tree. Worst case doesnt exist due to
 8.int getLevel()
  This is O(logN) because its basically a search with a integer being incremented.
 9. inOrder(): void
+This is O(n) unless the tree is empty then it is 0(1).
 10. preOrder(): void
+This is O(n) unless the tree is empty then it is 0(1).
 11. postOrder(): void
+This is O(n) unless the tree is empty then it is 0(1).
 12. bfs(): ArrayList<E>
+This method is 0(n)
 13. isIdentical(Node<E> anotherTree)
 Order is O(N) where N is the number of nodes. This is because the worst case scenario will require the method to visit each node to check if the two trees are identical.
 14. numLeaves(): int
