@@ -1,6 +1,7 @@
 package lab6;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.math.*;
 import java.lang.Integer;
 
@@ -34,14 +35,18 @@ public class BinaryTree{
 	 sout(myTree.getLevel(99));
 	 sout("getAllDescendant of 25");
 	 sout(myTree.getAllDescendant(25	));
-	 /* 
+	 
+	 sout("Jonathan's Tests");
+	 
 	 sout("Pre Order");
 	 myTree.preOrder();
 	 sout("Post Order");
 	 myTree.postOrder();
 	 sout("In Order");
 	 myTree.inOrder();
-	 */
+	 sout("BFS");
+	 sout(myTree.bfs());
+	
 	  sout("\n" +"Anusha's tests");
 		// Testing the remove() method
 		sout("\n" +"Testing remove() method");
@@ -408,36 +413,27 @@ private void getAllDescendantsHelper(Node current,ArrayList<Integer> descendants
 	  }
   }
   
-  public ArrayList<Integer> bfs(){
-	  //Print out tree level by level(top to bottom, left to right)
-	  //print root
-	  //print root.left and root.right
-	  
-
-	  if(root == null) {
-		  return null;
-	  }
-	  else {
-		  bfs(bfsOrder, root);
-	  }
-		return new ArrayList<Integer>();
-  }
-  
-  public ArrayList<Integer> bfs(ArrayList<Integer> bfsOrder, Node node){
-	  if(node == null) {
-		  return null;
-	  }
-	  else {
-		/* 
-		  bfsOrder.add(node.data);
-		  bfsOrder.add(node.left.data);
-		  bfsOrder.add(node.right.data);
-		  */
-			return bfsOrder;
-
-	  }
-	  
-  }
+  public ArrayList<Integer> bfs() {
+	    ArrayList<Integer> bfsOrder = new ArrayList<>();
+	    List<Node> levelNodes = new ArrayList<>();
+	    levelNodes.add(root);
+	    bfs(bfsOrder, levelNodes);
+	    return bfsOrder;
+	}
+	private void bfs(ArrayList<Integer> bfsOrder, List<Node> levelNodes) {
+	    if (levelNodes.isEmpty()) {
+	        return;
+	    }
+	    List<Node> nextLevelNodes = new ArrayList<>();
+	    for (Node node : levelNodes) {
+	        if (node != null) {
+	            bfsOrder.add(node.data);
+	            nextLevelNodes.add(node.left);
+	            nextLevelNodes.add(node.right);
+	        }
+	    }
+	    bfs(bfsOrder, nextLevelNodes);
+	}
 //End of Jonathan's methods
 
   //Code by: Thomas Powis
